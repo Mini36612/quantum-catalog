@@ -32,6 +32,25 @@ const Index = () => {
     });
   };
 
+  const handleCategoryClick = (category: FilterCategory) => {
+    const categoryOptions: Record<FilterCategory, string[]> = {
+      typeOfAI: ["GenAI", "DI", "ML", "AgenticAI"],
+      domain: ["Healthcare", "BFSI", "Telecom", "Mortgage", "EdTech", "Text", "Image"],
+      modality: ["Multi-Modal", "Structured Data"],
+    };
+
+    setActiveFilters((prev) => {
+      const currentValues = prev[category];
+      const allOptions = categoryOptions[category];
+      const allSelected = allOptions.every((opt) => currentValues.includes(opt));
+      
+      return {
+        ...prev,
+        [category]: allSelected ? [] : allOptions,
+      };
+    });
+  };
+
   const handlePlayDemo = (videoUrl: string) => {
     setCurrentVideoUrl(videoUrl);
     setVideoModalOpen(true);
@@ -85,6 +104,7 @@ const Index = () => {
       <CategoryFilters
         activeFilters={activeFilters}
         onFilterChange={handleFilterChange}
+        onCategoryClick={handleCategoryClick}
       />
 
       <main className="container mx-auto px-4 py-8">

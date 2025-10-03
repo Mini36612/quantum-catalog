@@ -9,6 +9,7 @@ interface CategoryFiltersProps {
     modality: string[];
   };
   onFilterChange: (category: FilterCategory, value: string) => void;
+  onCategoryClick: (category: FilterCategory) => void;
 }
 
 const filterData = {
@@ -26,7 +27,7 @@ const filterData = {
   },
 };
 
-const CategoryFilters = ({ activeFilters, onFilterChange }: CategoryFiltersProps) => {
+const CategoryFilters = ({ activeFilters, onFilterChange, onCategoryClick }: CategoryFiltersProps) => {
   const isActive = (category: FilterCategory, value: string) => {
     return activeFilters[category].includes(value);
   };
@@ -37,7 +38,10 @@ const CategoryFilters = ({ activeFilters, onFilterChange }: CategoryFiltersProps
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {Object.entries(filterData).map(([key, { label, options }]) => (
             <div key={key} className="space-y-3">
-              <h3 className="text-sm font-semibold text-primary-foreground/80 uppercase tracking-wide">
+              <h3 
+                className="text-sm font-semibold text-primary-foreground/80 uppercase tracking-wide cursor-pointer hover:text-primary-foreground transition-colors"
+                onClick={() => onCategoryClick(key as FilterCategory)}
+              >
                 {label}
               </h3>
               <div className="flex flex-wrap gap-2">
