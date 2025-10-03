@@ -14,8 +14,8 @@ export const aiCardsData: AICardData[] = [
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     status: "Exit",
     tags: {
-      typeOfAI: ["GenAI", "AgenticAI"],
-      domain: ["BFSI"],
+      typeOfAI: ["AgenticAI"],
+      domain: [],
       modality: ["Multi-Modal"],
     },
   },
