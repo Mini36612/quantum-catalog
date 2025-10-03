@@ -57,7 +57,9 @@ const Index = () => {
   };
 
   const filteredCards = useMemo(() => {
-    return aiCardsData.filter((card) => {
+    console.log("Active Filters:", activeFilters);
+    
+    const filtered = aiCardsData.filter((card) => {
       // Search filter
       const matchesSearch =
         searchQuery === "" ||
@@ -93,8 +95,23 @@ const Index = () => {
           card.tags.modality.includes(filter)
         );
 
-      return matchesSearch && matchesTypeOfAI && matchesDomain && matchesModality;
+      const result = matchesSearch && matchesTypeOfAI && matchesDomain && matchesModality;
+      
+      if (hasActiveFilters) {
+        console.log(`Card "${card.title}":`, {
+          tags: card.tags,
+          matchesTypeOfAI,
+          matchesDomain,
+          matchesModality,
+          result
+        });
+      }
+
+      return result;
     });
+    
+    console.log(`Filtered cards count: ${filtered.length}`);
+    return filtered;
   }, [searchQuery, activeFilters]);
 
   return (
