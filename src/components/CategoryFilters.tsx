@@ -32,6 +32,10 @@ const CategoryFilters = ({ activeFilters, onFilterChange, onCategoryClick }: Cat
     return activeFilters[category].includes(value);
   };
 
+  const isCategoryActive = (category: FilterCategory) => {
+    return activeFilters[category].length > 0;
+  };
+
   return (
     <div className="bg-primary/95 backdrop-blur-sm border-b border-primary/20">
       <div className="container mx-auto px-4 py-4">
@@ -39,7 +43,11 @@ const CategoryFilters = ({ activeFilters, onFilterChange, onCategoryClick }: Cat
           {Object.entries(filterData).map(([key, { label, options }]) => (
             <div key={key} className="space-y-3">
               <h3 
-                className="text-sm font-semibold text-primary-foreground/80 uppercase tracking-wide cursor-pointer hover:text-primary-foreground transition-colors"
+                className={`text-sm font-semibold uppercase tracking-wide cursor-pointer transition-colors ${
+                  isCategoryActive(key as FilterCategory)
+                    ? "text-secondary font-bold"
+                    : "text-primary-foreground/80 hover:text-primary-foreground"
+                }`}
                 onClick={() => onCategoryClick(key as FilterCategory)}
               >
                 {label}
