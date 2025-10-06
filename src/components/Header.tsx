@@ -8,7 +8,7 @@ interface HeaderProps {
 
 const Header = ({ searchQuery, onSearchChange }: HeaderProps) => {
   return (
-    <header className="w-full border-b border-primary/20">
+    <header className="z-50 w-full bg-primary border-b border-primary/20 shadow-lg">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
