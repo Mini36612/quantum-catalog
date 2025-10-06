@@ -4,6 +4,7 @@ import CategoryFilters, { FilterCategory } from "@/components/CategoryFilters";
 import AICard from "@/components/AICard";
 import VideoModal from "@/components/VideoModal";
 import { aiCardsData } from "@/data/aiCards";
+import backgroundHero from "@/assets/background-hero.png";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -116,13 +117,21 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
-      
-      <CategoryFilters
-        activeFilters={activeFilters}
-        onFilterChange={handleFilterChange}
-        onCategoryClick={handleCategoryClick}
-      />
+      {/* Combined Header and Filters Section with Background */}
+      <div 
+        className="sticky top-0 z-50 w-full bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${backgroundHero})` }}
+      >
+        {/* Dark overlay for readability */}
+        <div className="bg-primary/95 backdrop-blur-sm">
+          <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+          <CategoryFilters
+            activeFilters={activeFilters}
+            onFilterChange={handleFilterChange}
+            onCategoryClick={handleCategoryClick}
+          />
+        </div>
+      </div>
 
       <main className="container mx-auto px-4 py-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
