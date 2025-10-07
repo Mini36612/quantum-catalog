@@ -122,8 +122,8 @@ const Index = () => {
         className="sticky top-0 z-50 w-full bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${backgroundHero})` }}
       >
-        {/* Dark overlay for readability */}
-        <div className="bg-primary/95 backdrop-blur-sm">
+        {/* Light overlay for readability */}
+        <div className="bg-primary/70 backdrop-blur-sm">
           <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
           <CategoryFilters
             activeFilters={activeFilters}
